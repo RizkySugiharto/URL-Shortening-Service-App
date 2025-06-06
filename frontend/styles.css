@@ -1,0 +1,76 @@
+.spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #3498db;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.copy-success {
+    animation: copySuccess 0.3s ease-in-out;
+}
+
+@keyframes copySuccess {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#historyList li a {
+    text-decoration: none;
+}
+
+#historyList li a:first-child {
+    color: rgb(0, 0, 100);
+}
+#historyList li a:last-child {
+    color: rgb(0, 100   , 0);
+}
+
+#historyList li a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+#historyList li a:first-child:hover {
+    color: rgb(0, 0, 255);
+}
+#historyList li a:last-child:hover {
+    color: rgb(0, 200, 0);
+}
