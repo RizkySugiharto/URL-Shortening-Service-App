@@ -23,5 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 # config file
-config.*
+/frontend/config.js
 !config.template.*
