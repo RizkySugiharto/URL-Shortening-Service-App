@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE = 'http://localhost:3000';
+import { API_BASE, API_VERSION } from "./config.js";
 
 // DOM Elements
 const urlForm = document.getElementById('urlForm');
@@ -28,11 +28,11 @@ function clearUrlError() {
     urlError.classList.add('hidden');
 }
 
-function showSuccess(original, shortened) {
+function showSuccess(original, shortCode) {
     originalUrl.textContent = original;
     originalUrl.href = original;
-    shortenedUrl.textContent = shortened;
-    shortenedUrl.href = shortened;
+    shortenedUrl.textContent = `${API_BASE}/${shortCode}`;
+    shortenedUrl.href = `${API_BASE}/${shortCode}`;
     successResult.classList.remove('hidden');
 }
 
@@ -60,9 +60,9 @@ function isValidUrl(url) {
 }
 
 // Function to add to history
-function addToHistory(original, shortened) {
+function addToHistory(shortCode, original) {
     const listItem = document.createElement('li');
-    listItem.innerHTML = `<a href="${shortened}" target="_blank">${shortened}</a> - <a href="${original}" target="_blank">Original</a>`;
+    listItem.innerHTML = `<a href="${API_BASE + '/' + shortCode}" target="_blank">${shortCode}</a> - <a href="${original}" target="_blank">Original</a>`;
     historyList.appendChild(listItem);
 }
 
@@ -90,7 +90,7 @@ urlForm.addEventListener('submit', async function (e) {
         const formData = new URLSearchParams();
         formData.append('destination', destination);
 
-        const response = await fetch(`${API_BASE}/v1/urls/save`, {
+        const response = await fetch(`${API_BASE}/${API_VERSION}/urls/save`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -104,15 +104,13 @@ urlForm.addEventListener('submit', async function (e) {
         }
 
         const data = await response.json();
-
-        // Assuming the API returns the shortened code/ID
         const shortCode = data.source;
+
         if (shortCode) {
-            const shortened = `${API_BASE}/${shortCode}`;
-            showSuccess(destination, shortened);
-            addToHistory(destination, shortened);
+            showSuccess(destination, shortCode);
+            addToHistory(shortCode, destination);
             urlInput.value = '';
-            saveToHistory(destination, shortened);
+            saveToHistory(shortCode, destination);
         } else {
             throw new Error('Invalid response from server');
         }
@@ -143,18 +141,18 @@ function loadHistory() {
 
     const urlHistory = JSON.parse(saved);
     for (const key in urlHistory) {
-        addToHistory(urlHistory[key], key);
+        addToHistory(key, urlHistory[key]);
     }
 }
 
 // Save history to localStorage
-function saveToHistory(original, shortened) {
-    const saved = localStorage.getItem('url-history') ?? {};
+function saveToHistory(shortCode, original) {
+    const saved = localStorage.getItem('url-history') ?? '{}';
     if (!saved) {
         localStorage.setItem('url-history', JSON.stringify({}));
     };
 
     let urlHistory = JSON.parse(saved);
-    urlHistory[shortened] = original;
+    urlHistory[shortCode] = original;
     localStorage.setItem('url-history', JSON.stringify(urlHistory));
 }

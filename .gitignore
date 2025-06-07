@@ -3,9 +3,8 @@ node_modules/
 /dist
 notes/
 
-# local env files
-.env.local
-.env.*.local
+# env files
+.env
 
 # Log files
 *.log
@@ -20,5 +19,8 @@ pnpm-debug.log*
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
+*.slns
 *.sw?
+
+# config file
+config.*
