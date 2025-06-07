@@ -24,3 +24,4 @@ pnpm-debug.log*
 
 # config file
 config.*
+!config.template.*
