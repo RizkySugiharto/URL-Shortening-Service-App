@@ -23,7 +23,7 @@ In addition, the DBMS (Database Management System) used to store URL data is **M
 My Published Web: https://urlshortsrv.vercel.app
 
 
-## Run Project
+## Run Locally 🖥
 
 Clone the project
 
@@ -52,7 +52,7 @@ Start the backend in development (dev) or production (prod)
 
 ## Environment Variables (backend) ⚙
 
-To run this project, you will need to add the following environment variables to your .env file
+To run the backend app, you will need to add the following environment variables to your `.env` file in `/backend` directory (create if doesn't exists)
 
 - `NODE_ENV` (Default: "development") Can be "production" or "development".
 - `API_VERSION` (Default: 1) Version of API, but the available version is only 1.
