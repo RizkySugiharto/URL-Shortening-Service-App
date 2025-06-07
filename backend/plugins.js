@@ -1,5 +1,4 @@
 const { Forbidden } = require('http-errors')
-const fs = require('fs')
 
 async function loadPlugins(fastify) {
     fastify.register(require('@fastify/cors'), {

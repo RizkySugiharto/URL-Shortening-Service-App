@@ -1,14 +1,14 @@
-async function main() {
+async function run() {
     const utils = require('./utils')
-
+    
     // Load environtment configuration
     const config = require('./config')
     config.loadConfig()
-    
+
     // Initialize the app
     const logger = require('./logger')
     const fastify = require('fastify')({
-        logger: logger
+        logger: process.env.ENABLE_LOGGER.toLowerCase() == 'true' ? logger : false
     })
     
     // Register all plugins
@@ -50,4 +50,4 @@ async function main() {
     })
 }
 
-main()
+run()
