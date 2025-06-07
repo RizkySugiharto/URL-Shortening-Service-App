@@ -25,25 +25,29 @@ My Published Web: https://urlshortsrv.vercel.app
 
 ## Run Locally 🖥
 
-Clone the project
+- Clone the project
 
 ```bash
   git clone https://github.com/RizkySugiharto/URL-Shortening-Service-App.git
 ```
 
-Go to the `/backend` directory
+- Go to the `/backend` directory
 
 ```bash
   cd project/backend
 ```
 
-Install dependencies for backend app
+- Install dependencies for backend app
 
 ```bash
   npm install
 ```
 
-Start the backend in development (dev) or production (prod)
+- Create database (if doesn't exists) and import the `/schemas/db.sql` to your database
+
+- Setup the env file on `/backend/.env` (create one if doesn't exists)
+
+- Start the backend in development (dev) or production (prod)
 
 ```bash
   npm run dev
